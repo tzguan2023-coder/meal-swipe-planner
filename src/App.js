@@ -38,9 +38,9 @@ function App() {
     }
   };
   // 状态变量（带本地持久化）
-  const [startDate, setStartDate] = useState(loadSaved().startDate || '20250815');
-  const [endDate, setEndDate] = useState(loadSaved().endDate || '20251220');
-  const [totalMeal, setTotalMeal] = useState(loadSaved().totalMeal || '180');
+  const [startDate, setStartDate] = useState(loadSaved().startDate || '20250824');
+  const [endDate, setEndDate] = useState(loadSaved().endDate || '20251222');
+  const [totalMeal, setTotalMeal] = useState(loadSaved().totalMeal || '283');
   const [remainMeal, setRemainMeal] = useState(loadSaved().remainMeal || '50');
   const [selected, setSelected] = useState(loadSaved().selected || HOLIDAYS.map(h => h.label));
 
