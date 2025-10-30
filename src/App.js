@@ -133,7 +133,7 @@ function App() {
         <b>3. 预测到期剩余/超出：</b><br />
         {futureLeft !== '--' &&
           <>如果后续保持当前用量，到学期结束预计
-            {Number(futureLeft) > 0 ? '还剩' : '会超出'}
+            {Number(futureLeft) > 0 ? '还剩' : '会缺少'}
             {Math.abs(Number(futureLeft))} 次meal swipe</>
         }
       </div>
