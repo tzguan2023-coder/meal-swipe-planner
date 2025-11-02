@@ -133,7 +133,7 @@ function App() {
         <b>3. Prediction of Meal Swipes Lacking/Exceeding：</b><br />
         {futureLeft !== '--' &&
           <>Keep the current habit, when the semester ends you
-            {Number(futureLeft) > 0 ? 'will leave unused ' : 'will be a lack of '}
+            {Number(futureLeft) > 0 ? ' will leave unused ' : ' will be a lack of '}
             {Math.abs(Number(futureLeft))} meal swipes</>
         }
       </div>
