@@ -93,17 +93,17 @@ function App() {
   return (
     <div style={{ maxWidth: 500, margin: "20px auto", padding: 20, background: "#f7f7f7", borderRadius: 16, boxShadow: "0 0 12px #ddd" }}>
       <h2>Meal Swipe Planner™ (Web) </h2>
-      <label>Semester start date（YEAR/MONTH/DATE 8 digit）：</label>
+      <label>Semester start date(YEAR/MONTH/DATE 8 digit): </label>
       <input value={startDate} onChange={e => setStartDate(e.target.value)} placeholder="20250824" maxLength={8} style={{ width: 160 }} /><br />
-      <label>Semester end date（YEAR/MONTH/DATE 8 digit）：</label>
+      <label>Semester end date(YEAR/MONTH/DATE 8 digit): </label>
       <input value={endDate} onChange={e => setEndDate(e.target.value)} placeholder="20251222" maxLength={8} style={{ width: 160 }} /><br />
-      <label>Total meal swipes：</label>
+      <label>Total meal swipes: </label>
       <input value={totalMeal} onChange={e => setTotalMeal(e.target.value)} style={{ width: 100 }} /><br />
-      <label>Meal swipes left：</label>
+      <label>Meal swipes left: </label>
       <input value={remainMeal} onChange={e => setRemainMeal(e.target.value)} style={{ width: 100 }} /><br />
-      <div style={{ color: '#888', marginBottom: 8 }}>Today：{todayStr}</div>
+      <div style={{ color: '#888', marginBottom: 8 }}>Today: {todayStr}</div>
 
-      <b>Holidays at home or out（Please only select the holidays during which you are entirely outside the school.）：</b>
+      <b>Holidays away from campus (Select the holidays when you will be completely off campus.)</b>
       <div>
         {availableHolidays.map(h =>
           <div key={h.label} style={{ display: "flex", alignItems: "center", marginBottom: 3 }}>
@@ -112,29 +112,29 @@ function App() {
               style={{ cursor: "pointer", fontSize: 18, color: selected.includes(h.label) ? "#007aff" : "#999" }}>
               {selected.includes(h.label) ? "☑" : "☐"}
             </span>
-            <span style={{ marginLeft: 7 }}>{h.label}（{h.days}Days）</span>
+            <span style={{ marginLeft: 7 }}>{h.label}({h.days}Days)</span>
           </div>
         )}
       </div>
 
       <div style={{ margin: "20px 0", background: "#e6f0ff", borderRadius: 8, padding: 10 }}>
-        <b>1. Past：</b><br />
-        Days already past (Holidays excluded)：{usedDays}<br />
-        The number of meal swipes already used：{usedMeal}<br />
-        Average (per day)：{avgUsed}
+        <b>1. Usage So Far: </b><br />
+        Days elapsed (excluding holidays): {usedDays}<br />
+        Meal swipes already used: {usedMeal}<br />
+        Average use per day: {avgUsed}
       </div>
       <div style={{ margin: "20px 0", background: "#e6f0ff", borderRadius: 8, padding: 10 }}>
-        <b>2. Future：</b><br />
-        Days left（Holidays excluded）：{remainDays}<br />
-        The number of meal swipes left：{remainMeal}<br />
-        Recommend to use less than：{avgRemain} swipes per day
+        <b>2. Remaining: </b><br />
+        Days remaining (excluding holidays): {remainDays}<br />
+        Meal swipes remaining: {remainMeal}<br />
+        Recommend to use less than: {avgRemain} swipes per day
       </div>
       <div style={{ margin: "20px 0", background: "#e6f0ff", borderRadius: 8, padding: 10 }}>
-        <b>3. Prediction of Meal Swipes Lacking/Exceeding：</b><br />
+        <b>3. End-of-Semester Projection: </b><br />
         {futureLeft !== '--' &&
-          <>Keep the current habit, when the semester ends you
+          <>At your current pace, you'll
             {Number(futureLeft) > 0 ? ' will leave unused ' : ' will be a lack of '}
-            {Math.abs(Number(futureLeft))} meal swipes</>
+            {Math.abs(Number(futureLeft))} meal swipes when the semester ends.</>
         }
       </div>
       <div style={{ color: "#ccc", fontSize: 12, textAlign: "right" }}>© 2025 Tim Guan — Meal Swipe Planner™ / <a href="https://github.com/" style={{color:'#aac'}}>GitHub</a></div>
