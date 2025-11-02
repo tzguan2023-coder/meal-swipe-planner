@@ -2,7 +2,7 @@ import './App.css';
 
 import React, { useState, useEffect } from 'react';
 
-// 假期列表，按需扩展
+// Holidays list
 const HOLIDAYS = [
   { label: 'Labor Day', days: 3, dates: ['20250830', '20250831', '20250901'] },
   { label: 'Columbus Day', days: 3, dates: ['20251011', '20251012', '20251013'] },
@@ -28,7 +28,7 @@ function isBetween(d, start, end) {
 const STORAGE_KEY = 'meal_swipe_local_save';
 
 function App() {
-  // 加载本地缓存
+  // Local cache
   const loadSaved = () => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -49,11 +49,11 @@ function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ startDate, endDate, totalMeal, remainMeal, selected }));
   }, [startDate, endDate, totalMeal, remainMeal, selected]);
 
-  // 今天日期
+  // Today's date
   const now = new Date();
   const todayStr = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
 
-  // 学期内的假期
+  // Holidays within the school year
   const availableHolidays = HOLIDAYS.filter(h =>
     h.dates.some(d => isBetween(d, startDate, endDate))
   );
@@ -92,18 +92,18 @@ function App() {
 
   return (
     <div style={{ maxWidth: 500, margin: "20px auto", padding: 20, background: "#f7f7f7", borderRadius: 16, boxShadow: "0 0 12px #ddd" }}>
-      <h2>Meal Swipe 智能规划（网页版）</h2>
-      <label>学期开始日期（8位数字）：</label>
+      <h2>Meal Swipe Planner™ (Web) </h2>
+      <label>Semester start date（YEAR/MONTH/DATE 8 digit）：</label>
       <input value={startDate} onChange={e => setStartDate(e.target.value)} placeholder="20250824" maxLength={8} style={{ width: 160 }} /><br />
-      <label>学期结束日期（8位数字）：</label>
+      <label>Semester end date（YEAR/MONTH/DATE 8 digit）：</label>
       <input value={endDate} onChange={e => setEndDate(e.target.value)} placeholder="20251222" maxLength={8} style={{ width: 160 }} /><br />
-      <label>总meal swipe：</label>
+      <label>Total meal swipes：</label>
       <input value={totalMeal} onChange={e => setTotalMeal(e.target.value)} style={{ width: 100 }} /><br />
-      <label>剩余meal swipe：</label>
+      <label>Meal swipes left：</label>
       <input value={remainMeal} onChange={e => setRemainMeal(e.target.value)} style={{ width: 100 }} /><br />
-      <div style={{ color: '#888', marginBottom: 8 }}>今天：{todayStr}</div>
+      <div style={{ color: '#888', marginBottom: 8 }}>Today：{todayStr}</div>
 
-      <b>校外假期（选择全部在校外的假期）：</b>
+      <b>Holidays at home or out（Please only select the holidays during which you are entirely outside the school.）：</b>
       <div>
         {availableHolidays.map(h =>
           <div key={h.label} style={{ display: "flex", alignItems: "center", marginBottom: 3 }}>
@@ -112,32 +112,32 @@ function App() {
               style={{ cursor: "pointer", fontSize: 18, color: selected.includes(h.label) ? "#007aff" : "#999" }}>
               {selected.includes(h.label) ? "☑" : "☐"}
             </span>
-            <span style={{ marginLeft: 7 }}>{h.label}（{h.days}天）</span>
+            <span style={{ marginLeft: 7 }}>{h.label}（{h.days}Days）</span>
           </div>
         )}
       </div>
 
       <div style={{ margin: "20px 0", background: "#e6f0ff", borderRadius: 8, padding: 10 }}>
-        <b>1. 已用：</b><br />
-        已用天数（校外假期除外）：{usedDays}<br />
-        已用meal swipe：{usedMeal}<br />
-        平均每日消耗：{avgUsed}
+        <b>1. Past：</b><br />
+        Days already past (Holidays excluded)：{usedDays}<br />
+        The number of meal swipes already used：{usedMeal}<br />
+        Average (per day)：{avgUsed}
       </div>
       <div style={{ margin: "20px 0", background: "#e6f0ff", borderRadius: 8, padding: 10 }}>
-        <b>2. 剩余：</b><br />
-        剩余天数（校外假期除外）：{remainDays}<br />
-        剩余meal swipe：{remainMeal}<br />
-        建议未来平均每日不超过：{avgRemain}
+        <b>2. Future：</b><br />
+        Days left（Holidays excluded）：{remainDays}<br />
+        The number of meal swipes left：{remainMeal}<br />
+        Recommend to use less than：{avgRemain} swipes per day
       </div>
       <div style={{ margin: "20px 0", background: "#e6f0ff", borderRadius: 8, padding: 10 }}>
-        <b>3. 预测到期剩余/超出：</b><br />
+        <b>3. Prediction of Meal Swipes Lacking/Exceeding：</b><br />
         {futureLeft !== '--' &&
-          <>如果后续保持当前用量，到学期结束预计
-            {Number(futureLeft) > 0 ? '还剩' : '会缺少'}
-            {Math.abs(Number(futureLeft))} 次meal swipe</>
+          <>Keep the current habit, when the semester ends you
+            {Number(futureLeft) > 0 ? 'will leave unused' : 'will be a lack of'}
+            {Math.abs(Number(futureLeft))} meal swipes</>
         }
       </div>
-      <div style={{ color: "#ccc", fontSize: 12, textAlign: "right" }}>© 2024 Meal Swipe Planner Web / <a href="https://github.com/" style={{color:'#aac'}}>GitHub</a></div>
+      <div style={{ color: "#ccc", fontSize: 12, textAlign: "right" }}>© 2025 Tim Guan — Meal Swipe Planner™ / <a href="https://github.com/" style={{color:'#aac'}}>GitHub</a></div>
     </div>
   );
 }
