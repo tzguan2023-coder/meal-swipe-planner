@@ -106,10 +106,10 @@ function App() {
   };
 
   const saved = loadSaved();
-  const [startDate, setStartDate] = useState(saved.startDate || '20250824');
-  const [endDate, setEndDate] = useState(saved.endDate || '20251222');
-  const [totalMeal, setTotalMeal] = useState(saved.totalMeal || '283');
-  const [remainMeal, setRemainMeal] = useState(saved.remainMeal || '50');
+  const [startDate, setStartDate] = useState(saved.startDate || '20260120');
+  const [endDate, setEndDate] = useState(saved.endDate || '20260518');
+  const [totalMeal, setTotalMeal] = useState(saved.totalMeal || '275');
+  const [remainMeal, setRemainMeal] = useState(saved.remainMeal || '270');
   const [selectedHolidays, setSelectedHolidays] = useState(saved.selectedHolidays || HOLIDAYS.map(h => h.label));
   const [customDates, setCustomDates] = useState(saved.customDates || []);
   
